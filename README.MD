@@ -39,7 +39,7 @@ $ ./domusto.js plugin add marthijn/nefit-easy
 }
 ```
 
-## Example controls 
+## Example devices
 
 ```js
 
