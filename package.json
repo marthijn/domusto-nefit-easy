@@ -1,0 +1,26 @@
+{
+  "name": "domusto-nefit-easy",
+  "version": "0.0.1",
+  "description": "DOMUSTO Home Automation plugin for Nefit Easy",
+  "main": "index.js",
+  "dependencies": {
+    "nefit-easy-commands": "^1.8.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marthijn/domusto-nefit-easy.git"
+  },
+  "keywords": [
+    "domusto", "domusto-plugin", "nefit"
+  ],
+  "author": "Marthijn van den Heuvel",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/marthijn/domusto-nefit-easy/issues"
+  },
+  "homepage": "https://github.com/marthijn/domusto-nefit-easy#readme"
+}
