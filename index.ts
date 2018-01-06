@@ -69,12 +69,12 @@ class DomustoNefitEasy extends DomustoPlugin {
                 util.prettyJson(location);
             }
 
-            this.broadcastSignal('inHouseTemp', {
+            this.broadcastSignal('in-house-temperature', {
                 deviceTypeString: 'Nefit Easy in house temperature',
                 temperature: status['in house temp'],
             });
 
-            this.broadcastSignal('outdoorTemp', {
+            this.broadcastSignal('outdoor-temperature', {
                 deviceTypeString: 'Nefit Easy outdoor temperature',
                 temperature: status['outdoor temp'],
             });
@@ -99,12 +99,12 @@ class DomustoNefitEasy extends DomustoPlugin {
 
             let sensorData = this.getStatusDummyData();
 
-            this.broadcastSignal('inHouseTemp', {
+            this.broadcastSignal('in-house-temperature', {
                 deviceTypeString: 'Nefit Easy in house temperature',
                 temperature: sensorData.status['in house temp'],
             });
 
-            this.broadcastSignal('outdoorTemp', {
+            this.broadcastSignal('outdoor-temperature', {
                 deviceTypeString: 'Nefit Easy outdoor temperature',
                 temperature: sensorData.status['outdoor temp'],
             });
