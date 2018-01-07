@@ -1,4 +1,3 @@
-import util from '../../util';
 import config from '../../config';
 
 // DOMUSTO
@@ -64,9 +63,9 @@ class DomustoNefitEasy extends DomustoPlugin {
             return [this.hardwareInstance.status(), this.hardwareInstance.pressure(), this.hardwareInstance.location()];
         }).spread((status, pressure, location) => {
             if (this.pluginConfiguration.debug) {
-                util.prettyJson(status);
-                util.prettyJson(pressure);
-                util.prettyJson(location);
+                this.console.prettyJson(status);
+                this.console.prettyJson(pressure);
+                this.console.prettyJson(location);
             }
 
             this.broadcastSignal('in-house-temperature', {
@@ -80,7 +79,7 @@ class DomustoNefitEasy extends DomustoPlugin {
             });
 
         }).catch((e) => {
-            util.error('Nefit Easy error', e);
+            this.console.error('Nefit Easy error', e);
         }).finally(() => {
             this.hardwareInstance.end();
         });
@@ -126,7 +125,7 @@ class DomustoNefitEasy extends DomustoPlugin {
                 'user mode': 'clock',
                 'clock program': 'auto',
                 'in house status': 'ok',
-                'in house temp': util.randomWithinOffset(19.2, 4),
+                'in house temp': this.util.randomWithinOffset(19.2, 4),
                 'hot water active': true,
                 'boiler indicator': 'central heating',
                 control: 'room',
@@ -141,16 +140,16 @@ class DomustoNefitEasy extends DomustoPlugin {
                 'boiler block': null,
                 'boiler lock': null,
                 'boiler maintenance': null,
-                'temp setpoint': util.randomWithinOffset(19.5, 2),
+                'temp setpoint': this.util.randomWithinOffset(19.5, 2),
                 'temp override temp setpoint': 17,
                 'temp manual setpoint': 19,
                 'hed enabled': null,
                 'hed device at home': null,
-                'outdoor temp': util.randomWithinOffset(13, 5),
+                'outdoor temp': this.util.randomWithinOffset(13, 5),
                 'outdoor source type': 'virtual'
             },
             pressure: {
-                pressure: util.randomWithinOffset(2, 0.05),
+                pressure: this.util.randomWithinOffset(2, 0.05),
                 unit: 'bar'
             },
             location: {
