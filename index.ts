@@ -1,6 +1,5 @@
-import config from '../../config';
-
 // DOMUSTO
+import config from '../../config';
 import DomustoPlugin from '../../domusto/DomustoPlugin';
 
 // INTERFACES
@@ -36,9 +35,7 @@ class DomustoNefitEasy extends DomustoPlugin {
         });
 
         if (pluginConfiguration.dummyData) {
-
             this.initDummyData();
-
         } else {
 
             // Initialize hardware plugin
@@ -56,7 +53,12 @@ class DomustoNefitEasy extends DomustoPlugin {
         }
     }
 
-    // Nefit Easy commands documentation: https://github.com/robertklep/nefit-easy-commands
+    /**
+     * Fetches the new status of Nefit Easy
+     * Nefit Easy commands documentation: https://github.com/robertklep/nefit-easy-commands
+     *
+     * @memberof DomustoNefitEasy
+     */
     refreshNefitEasyStatus() {
 
         this.hardwareInstance.connect().then(() => {
@@ -86,9 +88,8 @@ class DomustoNefitEasy extends DomustoPlugin {
 
     }
 
-
     /**
-     * Starts emitting dummy data
+     * Starts emitting dummy data every 10 seconds
      *
      * @memberof DomustoNefitEasy
      */
@@ -111,7 +112,6 @@ class DomustoNefitEasy extends DomustoPlugin {
         }, 10000);
 
     }
-
 
     /**
      * Gives dummy data for the Nefit Easy
