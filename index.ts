@@ -1,5 +1,6 @@
 // DOMUSTO
 import config from '../../config';
+import util from '../../util';
 import DomustoPlugin from '../../domusto/DomustoPlugin';
 
 // INTERFACES
@@ -38,18 +39,41 @@ class DomustoNefitEasy extends DomustoPlugin {
             this.initDummyData();
         } else {
 
-            // Initialize hardware plugin
-            this.hardwareInstance = NefitEasyCommands({
-                serialNumber: pluginConfiguration.settings.serialNumber,
-                accessKey: pluginConfiguration.settings.accessKey,
-                password: pluginConfiguration.settings.password
-            });
+            let isConfigurationValid = this.validateConfigurationAttributes(pluginConfiguration.settings, [
+                {
+                    attribute: 'pollInterval',
+                    type: 'number'
+                },
+                {
+                    attribute: 'serialNumber',
+                    type: 'string'
+                },
+                {
+                    attribute: 'accessKey',
+                    type: 'string'
+                },
+                {
+                    attribute: 'password',
+                    type: 'string'
+                }
+            ]);
 
-            // Poll current receiver status
-            this.refreshNefitEasyStatus();
+            if (isConfigurationValid) {
 
-            // Start polling receiver on interval
-            setInterval(() => this.refreshNefitEasyStatus(), pluginConfiguration.settings.pollInterval);
+                // Initialize hardware plugin
+                this.hardwareInstance = NefitEasyCommands({
+                    serialNumber: pluginConfiguration.settings.serialNumber,
+                    accessKey: pluginConfiguration.settings.accessKey,
+                    password: pluginConfiguration.settings.password
+                });
+
+                // Poll current receiver status
+                this.refreshNefitEasyStatus();
+
+                // Start polling receiver on interval
+                setInterval(() => this.refreshNefitEasyStatus(), pluginConfiguration.settings.pollInterval);
+
+            }
         }
     }
 
@@ -125,7 +149,7 @@ class DomustoNefitEasy extends DomustoPlugin {
                 'user mode': 'clock',
                 'clock program': 'auto',
                 'in house status': 'ok',
-                'in house temp': this.util.randomWithinOffset(19.2, 4),
+                'in house temp': util.randomWithinOffset(19.2, 4),
                 'hot water active': true,
                 'boiler indicator': 'central heating',
                 control: 'room',
@@ -140,16 +164,16 @@ class DomustoNefitEasy extends DomustoPlugin {
                 'boiler block': null,
                 'boiler lock': null,
                 'boiler maintenance': null,
-                'temp setpoint': this.util.randomWithinOffset(19.5, 2),
+                'temp setpoint': util.randomWithinOffset(19.5, 2),
                 'temp override temp setpoint': 17,
                 'temp manual setpoint': 19,
                 'hed enabled': null,
                 'hed device at home': null,
-                'outdoor temp': this.util.randomWithinOffset(13, 5),
+                'outdoor temp': util.randomWithinOffset(13, 5),
                 'outdoor source type': 'virtual'
             },
             pressure: {
-                pressure: this.util.randomWithinOffset(2, 0.05),
+                pressure: util.randomWithinOffset(2, 0.05),
                 unit: 'bar'
             },
             location: {
