@@ -4,7 +4,7 @@ import util from '../../util';
 import DomustoPlugin from '../../domusto/DomustoPlugin';
 
 // INTERFACES
-import { Domusto } from '../../domusto/DomustoInterfaces';
+import { Domusto } from '../../domusto/DomustoTypes';
 
 // PLUGIN SPECIFIC
 import * as NefitEasyCommands from 'nefit-easy-commands';
@@ -39,7 +39,7 @@ class DomustoNefitEasy extends DomustoPlugin {
             this.initDummyData();
         } else {
 
-            let isConfigurationValid = this.validateConfigurationAttributes(pluginConfiguration.settings, [
+            const isConfigurationValid = this.validateConfigurationAttributes(pluginConfiguration.settings, [
                 {
                     attribute: 'pollInterval',
                     type: 'number'
@@ -72,6 +72,8 @@ class DomustoNefitEasy extends DomustoPlugin {
 
                 // Start polling receiver on interval
                 setInterval(() => this.refreshNefitEasyStatus(), pluginConfiguration.settings.pollInterval);
+
+                this.console.header(`${pluginConfiguration.id} plugin ready for sending / receiving data`);
 
             }
         }
